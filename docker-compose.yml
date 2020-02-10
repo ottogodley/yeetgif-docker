@@ -1,0 +1,11 @@
+---
+    version: "2"
+    services:
+      yeetgif:
+        build:
+            context: .
+        container_name: yeetgif
+        volumes:
+            - in:/img-in
+            - out:/img-out
+        command: ["cat /img-in/${image_file} | gif ${gif_command} > /img-out/output.gif"]

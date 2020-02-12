@@ -1,15 +1,16 @@
 ---
-    version: "2"
+    version: "3.4"
     services:
       yeetgif:
         build:
             context: .
+            target: runner
         container_name: yeetgif
         volumes:
             - ./in:/go/img-in
             - ./out:/go/img-out
             - ./make-gif.sh:/go/make-gif.sh
-        command: ["./make-gif.sh", "${IMAGE_FILE}", "${GIF_COMMAND}"]
+        command: ["/go/make-gif.sh", "${IMAGE_FILE}", "${GIF_COMMAND}"]
         environment:
             - IMAGE_FILE="test.png"
             - GIF_COMMAND="wobble"

@@ -1,6 +1,6 @@
 # yeetgif-docker #
 
-* A Docker image for using [yeetgif](https://github.com/sgreben/yeetgif) without having to worry about building/depedencies *
+* A Docker image for using [yeetgif](https://github.com/sgreben/yeetgif) without having to worry about building/depedencies
 
 ## Usage ##
 

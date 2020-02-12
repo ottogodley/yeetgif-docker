@@ -9,4 +9,7 @@
             - ./in:/go/img-in
             - ./out:/go/img-out
             - ./make-gif.sh:/go/make-gif.sh
-        command: ["./make-gif.sh", "${image_file}", "${gif_command}"]
+        command: ["./make-gif.sh", "${IMAGE_FILE}", "${GIF_COMMAND}"]
+        environment:
+            - IMAGE_FILE="test.png"
+            - GIF_COMMAND="wobble"

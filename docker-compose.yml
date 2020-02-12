@@ -1,11 +1,11 @@
 ---
     version: "3.4"
     services:
-      yeetgif:
+      yeet:
         build:
             context: .
             target: runner
-        container_name: yeetgif
+        container_name: gif
         volumes:
             - ./in:/go/img-in
             - ./out:/go/img-out

@@ -6,6 +6,7 @@
             context: .
         container_name: yeetgif
         volumes:
-            - in:/img-in
-            - out:/img-out
-        command: ["cat /img-in/${image_file} | gif ${gif_command} > /img-out/output.gif"]
+            - ./in:/go/img-in
+            - ./out:/go/img-out
+            - ./make-gif.sh:/go/make-gif.sh
+        command: ["./make-gif.sh", "${image_file}", "${gif_command}"]

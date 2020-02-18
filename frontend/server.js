@@ -1,12 +1,25 @@
-const express = require('express');
-const app = express();
+var http = require('http');
+var formidable = require('formidable');
+var fs = require('fs');
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-app.set('view engine', 'pug');
-
-const server = app.listen(7000, () => {
-    console.log('Express running -> PORT ${server.address().port}')
-});
+http.createServer(function (req, res) {
+    if (req.url == '/fileupload') {
+        var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            var oldpath = files.filetoupload.path;
+            var newpath = '../in/' + files.filetoupload.name;
+            fs.rename(oldpath, newpath, function (err) {
+                if (err) throw err;
+                res.write('File uploaded and moved!');
+                res.end();
+            });
+        });
+    } else {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+        res.write('<input type="file" name="filetoupload"><br>');
+        res.write('<input type="submit">');
+        res.write('</form>');
+        return res.end();
+    }
+}).listen(8080);
